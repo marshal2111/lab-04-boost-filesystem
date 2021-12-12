@@ -1,5 +1,7 @@
-#include <example.hpp>
+#include <broker.hpp>
+#include <iostream>
 
 int main() {
-  example();
+    const std::string p{"mydir/"};
+    analyzeAll(p);
 }
