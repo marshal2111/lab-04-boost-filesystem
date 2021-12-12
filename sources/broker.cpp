@@ -41,7 +41,6 @@ void analyzeDirectory(const boost_path dir,
             if (regex_match(filename.c_str(), m, reg) &&
                 filename.length() == 29)
             {
-
                 broker_account broker = {dir.filename().string(),
                                      filename.substr(8, 8)};
                 if (brokers_info.find(broker) != brokers_info.end()) {

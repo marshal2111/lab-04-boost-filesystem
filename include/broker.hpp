@@ -15,8 +15,8 @@
 #define boost_directory_iterator boost::filesystem::directory_iterator
 
 struct accountInfo {
-	int files_count;
-	int lastdate;
+    int files_count;
+    int lastdate;
 };
 
 auto example() -> void;
