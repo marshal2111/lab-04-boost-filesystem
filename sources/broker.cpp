@@ -5,25 +5,29 @@
 
 #include <broker.hpp>
 
-using namespace boost::filesystem;
-using namespace std;
+using std::string;
+using std::map;
+using std::tuple;
+using std::regex;
+using std::get;
+using std::cmatch;
 
 auto example() -> void {
-    throw runtime_error("not implemented");
+    throw std::runtime_error("not implemented");
 }
 
 void analyzeAll(const string dir_str) {
     map<broker_account, accountInfo> brokers_info {};
-    const path dir{dir_str};
+    const boost_path dir{dir_str};
     analyzeDirectory(dir, brokers_info);
 
     printInfo(brokers_info);
 }
 
-void analyzeDirectory(const path dir,
+void analyzeDirectory(const boost_path dir,
                       map<broker_account, accountInfo> &brokers_info)
 {
-    for (const directory_entry& x : directory_iterator{dir})
+    for (const boost_directory_entry& x : boost_directory_iterator{dir})
     {
         if (is_directory(x)) {
             analyzeDirectory(x.path(), brokers_info);
@@ -51,19 +55,19 @@ void analyzeDirectory(const path dir,
                     brokers_info[broker] = acc;
                 }
 
-                cout << get<0>(broker) << " "
-                     << filename << endl;
+                std::cout << get<0>(broker) << " "
+                          << filename << std::endl;
             }
         }
     }
 }
 
 void printInfo(const map<broker_account, accountInfo> &brokers_info) {
-    cout << endl;
+    std::cout << std::endl;
     for (const auto& [broker, acc] : brokers_info) {
-        cout << "broker:" << get<0>(broker) << " "
-             << "account:" << get<1>(broker) << " "
-             << "files:" << acc.files_count << " "
-             << "lastdate:" << acc.lastdate << endl;
+        std::cout << "broker:" << get<0>(broker) << " "
+                  << "account:" << get<1>(broker) << " "
+                  << "files:" << acc.files_count << " "
+                  << "lastdate:" << acc.lastdate << std::endl;
     }
 }
