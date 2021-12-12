@@ -26,4 +26,5 @@ void analyzeDirectory(const path dir,
 void analyzeAll(const string dir_str);
 void printInfo(const map<broker_account, accountInfo> &brokers_info);
 
+
 #endif // INCLUDE_BROKER_HPP_
